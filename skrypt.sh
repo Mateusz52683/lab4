@@ -9,6 +9,12 @@
 	echo "--init Klonuje repozytorium i  ustawia PATH"
 
 }
+
+ init_rep(){
+	git clone "$REPO_URL"
+	repo_name=$(basename "$REPO_URL" .git)
+	export PATH = $PATH:$(pwd)/$repo_name
+}
 case "$1" in
 	--date)
 	   date;;
@@ -22,7 +28,11 @@ case "$1" in
 		echo "Nazwa: $filename" > $filename
 		echo "Skrypt: $0 >> $filename"
 		echo "Dane: $(date)" >> $filename
-	done;;
+	;;
+	--init)
+		init_rep;;
+	
+		done;;
 *)
 
 esac
