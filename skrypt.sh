@@ -1,4 +1,5 @@
 
+
 #!/bin/bash
  help(){
 	echo "Opcje:" 
@@ -15,23 +16,28 @@
 	repo_name=$(basename "$REPO_URL" .git)
 	export PATH = $PATH:$(pwd)/$repo_name
 }
+
+ error(){
+	count=${1:100}
+	for i in $(seq 1 $count); do 
+		filename="errors/error$i.txt"
+		echo "Nazwa pliku: $filename" > $filename	
+		echo "Skrypt: $0" >> $filename
+		echo "Date: $(date)" >> $filename
+	done
+}
+
 case "$1" in
 	--date)
 	   date;;
 	--help|-h)
 	   help;;
 	--logs|-l)
-		count=${1:100}
-		for i in $(seq 1 $count); do
-		filename = "errors/error$i.txt"
-		echo Nazwa_pliku: "log$i.txt"
-		echo "Nazwa: $filename" > $filename
-		echo "Skrypt: $0 >> $filename"
-		echo "Dane: $(date)" >> $filename
-	;;
+	   logs;;
 	--init)
-		init_rep;;
-	
+	   init_rep;;
+	--error)
+	   error;;
 		done;;
 *)
 
